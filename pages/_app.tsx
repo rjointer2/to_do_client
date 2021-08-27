@@ -1,6 +1,6 @@
 
 // base css
-import '../styles/globals.css';
+import '../client_modules/styles/globals.css';
 
 // the next type for Components
 import { AppProps } from 'next/app';
