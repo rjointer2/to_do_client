@@ -1,6 +1,7 @@
 
 // next
 import Head from 'next/head';
+import { Dropdown } from '../client_modules/components/DropDown/DropDown';
 
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
@@ -17,6 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Dropdown />
       <Navbar />
 
       <div>
