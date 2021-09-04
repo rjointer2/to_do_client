@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 // 
-import { Props } from '../../types';
+import { Props } from '../../stateTypes';
 
 
 export const DropDownContainer = styled("aside")<Props>`
