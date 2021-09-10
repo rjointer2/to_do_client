@@ -1,7 +1,7 @@
 
 
 import styled from "styled-components";
-import { Props } from "../stateTypes";
+import { Props } from "../reducerType";
 
 // palette
 import { tertiary, secondary, hover_secondary, white } from "./palette";
