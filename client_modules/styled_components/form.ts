@@ -1,10 +1,10 @@
 
 
 import styled from "styled-components";
-import { Props } from "../reducerType";
 
 // palette
 import { tertiary, secondary, hover_secondary, white } from "./palette";
+import { Props } from "./types";
 
 
 export const FormContainer = styled.div`

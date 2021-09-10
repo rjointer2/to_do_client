@@ -9,14 +9,10 @@ import Navbar from '../client_modules/components/Navbar/Navbar';
 // react
 import { useContext } from 'react';
 import Context from '../client_modules/state_mangement/context';
-import { ContextInterface } from '../client_modules/actiontypes';
 
 
 export default function Home() {
 
-  const { state, dispatch } = useContext(Context) as ContextInterface
-
-  // do you use slack? to work with more jobs, okay ?
 
   return (
     <>
