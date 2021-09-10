@@ -1,18 +1,33 @@
 
 // next
 import Head from 'next/head';
-import { Dropdown } from '../client_modules/components/DropDown/DropDown';
+import { useRouter } from 'next/router';
 
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
+import { Dropdown } from '../client_modules/components/DropDown/DropDown';
 
 // react
 import { useContext } from 'react';
 import Context from '../client_modules/state_mangement/context';
+import { useQuery } from '@apollo/client';
+
+// apollo
+import { TODOS } from '../client_modules/apollo_client/querys/todos';
+
+
 
 
 export default function Home() {
 
+  let offset = 0
+  let limit = 10
+
+  const { data: todoData, error: todoError, loading: todoLoading, fetchMore: getMoreTodos } = useQuery(TODOS, {
+    variables: {  "offset": offset, "limit": limit }
+  });
+
+  if(todoLoading) return <h1>Loading...</h1>
 
   return (
     <>
