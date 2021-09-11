@@ -17,7 +17,7 @@ export type State = {
 
 // Action Defs
 
-type ActionMap<M extends { [index: string]: any }> = {
+export type ActionMap<M extends { [index: string]: any }> = {
     [Key in keyof M]: M[Key] extends undefined
       ? {
           type: Key;
@@ -79,74 +79,3 @@ export type ActionPayloadData = ActionMap<ActionPayload>[keyof ActionMap<ActionP
 
 export type Reducer<S, A> = (state: S, action: A) => S;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-type A<T> =  T extends Array<infer Mem> ? Mem : T
-
-type test = A<string[]>
-type test1 = A<State>
-
-
-
-type State = {
-    user: null
-    menu: "damn"
-}
-
-const ur: Reducer<State> = (s, a) => {
-
-
-    return s
-}
-
-const mr: Reducer<State> = (s, a) => {
-    return s
-}
-
-const he = () => {}
-
-
-
-
-  
-type Action = {
-    type: string;
- };
-  
-type Reducer<S> = (state: S, action: Action) => S;
-  
-
-type reduceReducers<S> = (
-    ...reducers: Reducer<S>[]
-) => Reducer<S>;
-
-const c: reduceReducers<State> = (...reducers) => (state, action) =>
-reducers.reduce((acc, nextReducer) => nextReducer(acc, action), state);
-
-c(ur, mr) */

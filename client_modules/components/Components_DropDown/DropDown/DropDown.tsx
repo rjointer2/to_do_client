@@ -3,10 +3,10 @@
 import React, { useReducer } from 'react';
 
 // components
-import NavDropDown from '../Components_DropDown/NavDropDown/NavDropDown';
-import TodoDropDown from '../Components_DropDown/TodoDropDown/TodoDropDown';
-import SearchDropDown from '../Components_DropDown/SearchDropDown/SearchDropDown';
-import CommentDropDown from '../Components_DropDown/CommentDropDown/CommentDropDown';
+import NavDropDown from '../NavDropDown/NavDropDown';
+import TodoDropDown from '../TodoDropDown/TodoDropDown';
+import SearchDropDown from '../SearchDropDown/SearchDropDown';
+import CommentDropDown from '../CommentDropDown/CommentDropDown';
 
 
 // styles

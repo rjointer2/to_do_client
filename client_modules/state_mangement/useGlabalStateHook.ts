@@ -1,7 +1,7 @@
 
 import { useReducer } from "react";
 
-import { ActionPayloadData, ActionsTypes, Reducer, State } from "./type"
+import { ActionPayloadData, ActionsTypes, Reducer, State } from "../type"
 
 const initialState: State = {
     user: {

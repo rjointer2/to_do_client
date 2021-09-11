@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
-import { Dropdown } from '../client_modules/components/DropDown/DropDown';
+import { Dropdown } from '../client_modules/components/Components_DropDown/DropDown/DropDown';
 
 // react
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Context from '../client_modules/state_mangement/context';
 import { useQuery } from '@apollo/client';
 
@@ -27,7 +27,16 @@ export default function Home() {
     variables: {  "offset": offset, "limit": limit }
   });
 
+  useEffect(() => {
+    console.log(todoLoading)
+    if(todoData) {
+      console.log(todoData.todos)
+    }
+  }, [todoData]);
+
+
   if(todoLoading) return <h1>Loading...</h1>
+  
 
   return (
     <>
@@ -43,6 +52,8 @@ export default function Home() {
       <div>
         Hello World
       </div>
+      
+      
     </>
   )
 }
