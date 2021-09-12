@@ -8,26 +8,17 @@ import { AppProps } from 'next/app';
 // apollo client 
 import client from '../client_modules/apollo_client/configs/client';
 import { ApolloProvider } from '@apollo/client';
-
-
-// state management
-import Context from '../client_modules/state_mangement/context';
-import { useGlobalState } from '../client_modules/state_mangement/useGlabalStateHook';
-
-
-
+import { GlobalState } from '../client_modules/state_mangement/globalState';
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  const store = useGlobalState();
-
   return (
     <ApolloProvider client={client}>
-      <Context.Provider value={store}>
+      <GlobalState>
         <Component {...pageProps} />
-      </Context.Provider>
+      </GlobalState>
     </ApolloProvider>
   )
 }

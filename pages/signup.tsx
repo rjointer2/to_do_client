@@ -1,6 +1,6 @@
 
 import React, { useReducer, useState } from 'react'
-import { EXIT_FORM_ERROR, formErrorReducer, initialFormErrorState } from '../client_modules/hooks/useFormErrorHook'
+import { formErrorReducer, initialFormErrorState } from '../client_modules/hooks/useFormErrorHook'
 
 // apollo 
 import { SIGN } from '../client_modules/apollo_client/mutations/user';
@@ -36,22 +36,23 @@ export default function signup() {
 
     const submitForm = async ( e: React.FormEvent) => {
         e.preventDefault();
+        console.log('hello')
 
         const comparsion = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
         if( !comparsion.test(form.password) ) {
-            formErrorDispatch({ type: "EXIT_FORM_ERROR", payload: "Make sure password or username contain at least one number and one special character" })
+            formErrorDispatch({ type: "INIT_FORM_ERROR", payload: "Make sure password or username contain at least one number and one special character" })
             return false
         }
 
         if( form.password !== form.confirmPassword ) {
-            formErrorDispatch({ type: "EXIT_FORM_ERROR", payload: "Password incompatible" })
+            formErrorDispatch({ type: "INIT_FORM_ERROR", payload: "Password incompatible" })
             console.log(form)
             return false
         }
     
         if( !form.username || !form.password || !form.confirmPassword || !form.email ) {
-            formErrorDispatch({ type: "EXIT_FORM_ERROR", payload: "Please submit form entirely" })
+            formErrorDispatch({ type: "INIT_FORM_ERROR", payload: "Please submit form entirely" })
             return false
         }
 
@@ -63,8 +64,8 @@ export default function signup() {
             });
             // directs users to the home page, then the home page authenticates user
             window.location.assign('/')
-        } catch(error) {
-            formErrorDispatch({ type: "EXIT_FORM_ERROR", payload: error.message  });
+        } catch(error: any) {
+            formErrorDispatch({ type: "INIT_FORM_ERROR", payload: error.message  });
             setSpinner(false)
         }
     }

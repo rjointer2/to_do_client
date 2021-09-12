@@ -1,7 +1,7 @@
 
-import { useReducer } from "react";
-
-import { ActionPayloadData, ActionsTypes, Reducer, State } from "../type"
+import { Dispatch, ReactNode, useReducer } from "react";
+import { ActionPayloadData, ActionsTypes, Reducer, State } from "../type";
+import { createContext } from 'react';
 
 const initialState: State = {
     user: {
@@ -20,7 +20,6 @@ const userReducer: Reducer<State, ActionPayloadData> = ( state, action ) => {
         case ActionsTypes.MENU_COMMENT: 
         return {
             ...state,
-            
         }
         default: return state
     }
@@ -38,19 +37,29 @@ type reduceReducers<S, A> = (
 ) => Reducer<S, A>;
 
 const combineReducers: reduceReducers<State, ActionPayloadData> = (slices) => (state, action) =>
-  Object.keys(slices).reduce( // use for..in loop, if you prefer it
+  Object.keys(slices).reduce(
     (acc, prop) => ({
       ...acc,
       [prop]: slices[prop](acc[prop], action),
     }),
     state
-  );
+);
 
+type test = {
+    state: State
+    dispatch?: Dispatch<ActionPayloadData>
+}
 
-export const useGlobalState = () => {
+export const Context = createContext({ state: initialState, dispatch: (action: ActionPayloadData) => {} }) 
+
+export function GlobalState({ children } : { children: ReactNode }) {
     const [ state, dispatch ] = useReducer( combineReducers({ 
         user: userReducer, menu: menuReducer 
     }), initialState );
 
-    return { state, dispatch }
+    return (
+        <Context.Provider value={{state, dispatch}}>
+            {children}
+        </Context.Provider>
+    )
 }

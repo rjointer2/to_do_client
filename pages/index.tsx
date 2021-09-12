@@ -9,16 +9,21 @@ import { Dropdown } from '../client_modules/components/Components_DropDown/DropD
 
 // react
 import { useContext, useEffect } from 'react';
-import Context from '../client_modules/state_mangement/context';
 import { useQuery } from '@apollo/client';
 
 // apollo
 import { TODOS } from '../client_modules/apollo_client/querys/todos';
+import { State } from '../client_modules/type';
+import { Context } from '../client_modules/state_mangement/globalState';
 
 
 
 
 export default function Home() {
+
+  const { state, dispatch } = useContext(Context);
+  const { u } = state
+
 
   let offset = 0
   let limit = 10
@@ -33,10 +38,6 @@ export default function Home() {
       console.log(todoData.todos)
     }
   }, [todoData]);
-
-
-  if(todoLoading) return <h1>Loading...</h1>
-  
 
   return (
     <>

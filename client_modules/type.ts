@@ -1,6 +1,8 @@
 
 // State Defs
 
+import { Dispatch } from "react";
+
 export type State = {
     [index: string]: any
     menu: {
@@ -13,6 +15,7 @@ export type State = {
     user: {
         user_data: any | null
     }
+    dispatch?: Dispatch<ActionPayloadData>
 }
 
 // Action Defs
