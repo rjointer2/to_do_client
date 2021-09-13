@@ -14,9 +14,7 @@ export default function Navbar() {
         <NavContainer>
             <NavWrapper>
                 <LogoIcon />
-                <Link href="#">
-                    <MenuIcon />
-                </Link>
+                <MenuIcon />
             </NavWrapper>
         </NavContainer>
     )

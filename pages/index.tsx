@@ -8,21 +8,22 @@ import Navbar from '../client_modules/components/Navbar/Navbar';
 import { Dropdown } from '../client_modules/components/Components_DropDown/DropDown/DropDown';
 
 // react
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
 // apollo
 import { TODOS } from '../client_modules/apollo_client/querys/todos';
-import { State } from '../client_modules/type';
-import { Context } from '../client_modules/state_mangement/globalState';
+import { useGlobalState } from '../client_modules/state_mangement/globalState';
 
 
 
 
 export default function Home() {
 
-  const { state, dispatch } = useContext(Context);
-  const { u } = state
+  const { state, dispatch } = useGlobalState();
+  const { menu } = state
+
+
 
 
   let offset = 0
@@ -50,8 +51,12 @@ export default function Home() {
       <Dropdown />
       <Navbar />
 
+
       <div>
         Hello World
+        <button onClick={() => dispatch({ type: "MENU_COMMENT", payload: !menu?.MENU_COMMENT })}>
+          Comment
+        </button>
       </div>
       
       

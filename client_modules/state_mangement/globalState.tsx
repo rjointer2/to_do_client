@@ -1,23 +1,38 @@
 
-import { Dispatch, ReactNode, useReducer } from "react";
-import { ActionPayloadData, ActionsTypes, Reducer, State } from "../type";
+import { ReactNode, useContext, useReducer } from "react";
+import { ActionMap, Reducer } from "../type";
 import { createContext } from 'react';
 
-const initialState: State = {
+type BaseState = {
+    [index: string]: any
     user: {
-        user_data: null
-    },
+        data: null | any
+    }
     menu: {
-        menu_nav: false,
-        menu_todo: false,
-        menu_comemnt: false,
-        menu_search: false
+        MENU_NAV: boolean
+        MENU_TODO: boolean
+        MENU_COMMENT: boolean
+        MENU_SEARCH: boolean
     }
 }
 
-const userReducer: Reducer<State, ActionPayloadData> = ( state, action ) => {
+type State = Partial<BaseState>
+
+const initialState: State = {
+    user: {
+        data: null
+    },
+    menu: {
+        MENU_NAV: false,
+        MENU_TODO: false,
+        MENU_COMMENT: false,
+        MENU_SEARCH: false
+    }
+}
+
+const userReducer: Reducer<State, ActionMap> = ( state, action ) => {
     switch(action.type) {
-        case ActionsTypes.MENU_COMMENT: 
+        case action.type: 
         return {
             ...state,
         }
@@ -25,32 +40,26 @@ const userReducer: Reducer<State, ActionPayloadData> = ( state, action ) => {
     }
 }
 
-const menuReducer: Reducer<State, ActionPayloadData> = ( state, action ) => {
-    for( let key in state.menu ) {
-        if( key === action.type ) state.menu[key] = !state.menu[key]
-    }
+const menuReducer: Reducer<State, ActionMap> = ( state, action ) => {
+    
+    state[action.type] = action.payload
     return state
 }
 
 type reduceReducers<S, A> = (
-    reducers: { [P in keyof State]: Reducer<S, A> }
+    reducers: { [P in keyof S]: Reducer<S, A> }
 ) => Reducer<S, A>;
 
-const combineReducers: reduceReducers<State, ActionPayloadData> = (slices) => (state, action) =>
-  Object.keys(slices).reduce(
+const combineReducers: reduceReducers<State, ActionMap> = (reducers) => (state, action) =>
+  Object.keys(reducers).reduce(
     (acc, prop) => ({
       ...acc,
-      [prop]: slices[prop](acc[prop], action),
+      [prop]: reducers[prop](acc[prop], action),
     }),
     state
 );
 
-type test = {
-    state: State
-    dispatch?: Dispatch<ActionPayloadData>
-}
-
-export const Context = createContext({ state: initialState, dispatch: (action: ActionPayloadData) => {} }) 
+export const Context = createContext({ state: initialState, dispatch: ({ type, payload } : ActionMap) => {} }) 
 
 export function GlobalState({ children } : { children: ReactNode }) {
     const [ state, dispatch ] = useReducer( combineReducers({ 
@@ -62,4 +71,8 @@ export function GlobalState({ children } : { children: ReactNode }) {
             {children}
         </Context.Provider>
     )
+}
+
+export const useGlobalState = () => {
+    return useContext(Context)
 }

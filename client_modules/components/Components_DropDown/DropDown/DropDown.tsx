@@ -1,6 +1,7 @@
 
 
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
+
 
 // components
 import NavDropDown from '../NavDropDown/NavDropDown';
@@ -8,22 +9,24 @@ import TodoDropDown from '../TodoDropDown/TodoDropDown';
 import SearchDropDown from '../SearchDropDown/SearchDropDown';
 import CommentDropDown from '../CommentDropDown/CommentDropDown';
 
-
 // styles
 import { DropDownContainer} from './DropDownStyles';
+import { useGlobalState } from '../../../state_mangement/globalState';
 
 
 
 export const Dropdown: React.FC = () => {
 
-    //const [ menuState, menuDispatch ] = useReducer<React.Reducer<InitialMenuStateInterface, MenuAction>>( useMenuReducerHook, initialMenuState );
+    const { state } = useGlobalState();
+    const { menu } = state;
+    
+
+    console.log(state)
 
     return (
         <div>
-            <DropDownContainer isOpen={true}><NavDropDown/></DropDownContainer>
-            <DropDownContainer isOpen={false} ><SearchDropDown/></DropDownContainer>
-            <DropDownContainer isOpen={false} ><TodoDropDown/></DropDownContainer>
-            <DropDownContainer isOpen={false} ><CommentDropDown/></DropDownContainer>
+          
+            <DropDownContainer isOpen={menu?.MENU_COMMENT}><CommentDropDown/></DropDownContainer>
         </div>
     )
 }
