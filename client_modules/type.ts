@@ -1,19 +1,18 @@
 
-// State Defs
-
-export type State = {
+type BaseState = {
     [index: string]: any
+    user: {
+        data: null | any
+    }
     menu: {
-        [index: string]: any
-        MENU_NAV: boolean,
-        MENU_TODO: boolean,
-        MENU_COMMENT: boolean,
+        MENU_NAV: boolean
+        MENU_TODO: boolean
+        MENU_COMMENT: boolean
         MENU_SEARCH: boolean
     }
-    user: {
-        user_data: any | null
-    }
 }
+
+export type State = Partial<BaseState>
 
 // Action Defs
 

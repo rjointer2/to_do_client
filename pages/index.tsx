@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
-import { Dropdown } from '../client_modules/components/Components_DropDown/DropDown/DropDown';
 
 // react
 import { useEffect } from 'react';
@@ -13,7 +12,8 @@ import { useQuery } from '@apollo/client';
 
 // apollo
 import { TODOS } from '../client_modules/apollo_client/querys/todos';
-import { useGlobalState } from '../client_modules/state_mangement/globalState';
+import { useGlobalState } from '../client_modules/hooks/useGlobalStateHook';
+import NavDropDown from '../client_modules/components/DropDowns/NavDropDown/NavDropDown';
 
 
 
@@ -48,15 +48,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Dropdown />
+      <NavDropDown />
       <Navbar />
 
 
       <div>
         Hello World
-        <button onClick={() => dispatch({ type: "MENU_COMMENT", payload: !menu?.MENU_COMMENT })}>
-          Comment
-        </button>
       </div>
       
       

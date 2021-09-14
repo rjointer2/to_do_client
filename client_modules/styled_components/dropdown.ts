@@ -1,16 +1,20 @@
 
+
 import styled from 'styled-components';
-import { Props } from '../../../styled_components/types';
+import { Props } from './types';
+
+// Palette
 
 
-
-export const DropDownContainer = styled("aside")<Props>`
+export const BaseDropDown = styled.aside<Props>`
+    padding: 15px;
     position: fixed;
     z-index: 999;
     width: 100%;
-    background: green;
+    background: ${({ background }) => background};
     display: grid;
     align-items: center;
+    top: 0;
     left: 0;
     transition: 0.3s ease-in-out;
     opacity: ${({ isOpen }) => (isOpen ? '100%' : '0' )};

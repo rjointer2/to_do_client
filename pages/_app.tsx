@@ -8,7 +8,7 @@ import { AppProps } from 'next/app';
 // apollo client 
 import client from '../client_modules/apollo_client/configs/client';
 import { ApolloProvider } from '@apollo/client';
-import { GlobalState } from '../client_modules/state_mangement/globalState';
+import { GlobalState } from '../client_modules/hooks/useGlobalStateHook';
 
 
 

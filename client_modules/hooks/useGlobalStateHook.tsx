@@ -1,22 +1,8 @@
 
 import { ReactNode, useContext, useReducer } from "react";
-import { ActionMap, Reducer } from "../type";
+import { ActionMap, Reducer, State } from "../type";
 import { createContext } from 'react';
 
-type BaseState = {
-    [index: string]: any
-    user: {
-        data: null | any
-    }
-    menu: {
-        MENU_NAV: boolean
-        MENU_TODO: boolean
-        MENU_COMMENT: boolean
-        MENU_SEARCH: boolean
-    }
-}
-
-type State = Partial<BaseState>
 
 const initialState: State = {
     user: {
