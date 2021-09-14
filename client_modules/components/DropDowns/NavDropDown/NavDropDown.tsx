@@ -19,7 +19,7 @@ export default function NavDropDown() {
 
     return (
         <BaseDropDown isOpen={menu?.MENU_NAV} background={primary}>
-            <CloseButton onClick={() => dispatch({ type: "MENU_NAV", payload: !menu?.MENU_NAV })} />
+            <CloseButton onClick={() => dispatch({ type: "MENU_NAV", payload: menu?.MENU_NAV })} />
             <NavDropDownWrapper>
                 <NavDropDownMenu>
                     <Link href="#">
@@ -33,7 +33,22 @@ export default function NavDropDown() {
                                 Home
                             </NavDropDownLink>
                         </Link>
+                        <Link href="#">
+                            <NavDropDownLink>
+                                Home
+                            </NavDropDownLink>
+                        </Link>
+                        <Link href="#">
+                            <NavDropDownLink>
+                                Home
+                            </NavDropDownLink>
+                        </Link>
                     </>}
+                    <Link href={'/signin'}>
+                        <NavDropDownLink>
+                            { user?.data ? 'Sign Out' : 'Sign In' }
+                        </NavDropDownLink>
+                    </Link>
                 </NavDropDownMenu>
             </NavDropDownWrapper>
         </BaseDropDown>

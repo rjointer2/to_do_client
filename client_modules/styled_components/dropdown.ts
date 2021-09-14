@@ -1,7 +1,7 @@
 
 
 import styled from 'styled-components';
-import { Props } from './types';
+import { Props } from '../types';
 
 // Palette
 

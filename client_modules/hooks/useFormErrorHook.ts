@@ -1,5 +1,5 @@
 
-import { ActionMap, Reducer } from "../type";
+import { ActionMap, Reducer } from "../types";
 
 interface FormActionType {
   type: `INIT_FORM_ERROR` | `EXIT_FORM_ERROR`

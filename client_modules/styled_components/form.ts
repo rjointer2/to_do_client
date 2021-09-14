@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 // palette
 import { tertiary, secondary, hover_secondary, white } from "./palette";
-import { Props } from "./types";
+import { Props } from "../types";
 
 
 export const FormContainer = styled.div`

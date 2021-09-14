@@ -1,4 +1,13 @@
 
+export type Props = { 
+    [index:string]: any
+    isOpen: boolean
+    z_index: number
+    background: string
+    show: boolean
+    height: string
+}
+
 type BaseState = {
     [index: string]: any
     user: {

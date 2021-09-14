@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // palette
-import { white } from "./palette";
+import { primary, white } from "./palette";
 
 // icons
 import { RiTodoLine } from 'react-icons/ri';
@@ -22,4 +22,12 @@ export const MenuIcon = styled(AiOutlineMenu)`
 
 `;
 
+
+export const AvatarCircle = styled.img`
+    border-radius: 50%;
+    background-color: ${white};
+    border: 2px solid ${primary};
+    height: 50px;
+    width: 50px;
+`;
 

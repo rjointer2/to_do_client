@@ -18,7 +18,7 @@ export default function Navbar() {
         <NavContainer>
             <NavWrapper>
                 <LogoIcon />
-                <MenuIcon  onClick={() => dispatch({ type: 'MENU_NAV', payload: !menu?.MENU_NAV })} />
+                <MenuIcon  onClick={() => dispatch({ type: 'MENU_NAV', payload: menu?.MENU_NAV })} />
             </NavWrapper>
         </NavContainer>
     )

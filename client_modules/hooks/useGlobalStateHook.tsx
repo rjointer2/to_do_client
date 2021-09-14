@@ -1,6 +1,6 @@
 
 import { ReactNode, useContext, useReducer } from "react";
-import { ActionMap, Reducer, State } from "../type";
+import { ActionMap, Reducer, State } from "../types";
 import { createContext } from 'react';
 
 
@@ -28,7 +28,7 @@ const userReducer: Reducer<State, ActionMap> = ( state, action ) => {
 
 const menuReducer: Reducer<State, ActionMap> = ( state, action ) => {
     
-    state[action.type] = action.payload
+    state[action.type] = !action.payload
     return state
 }
 

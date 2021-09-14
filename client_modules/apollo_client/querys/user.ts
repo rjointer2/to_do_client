@@ -4,8 +4,32 @@ import { gql } from '@apollo/client';
 export const ME = gql`
     {
         me {
-            _id
-            username
+            id
+            email
+            todos {
+                _id
+                completed
+                subject
+                todo
+                dueDate
+                createdBy {
+                    id
+                    username
+                }
+                likedBy {
+                    id
+                    username
+                }
+                didUserLike
+            }
+        }
+    }
+`;
+
+
+/* 
+
+username
             email
             todos {
                 _id
@@ -24,5 +48,5 @@ export const ME = gql`
                 didUserLike
             }
         }
-    }
-`;
+
+*/

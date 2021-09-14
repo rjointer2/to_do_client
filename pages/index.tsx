@@ -5,15 +5,22 @@ import { useRouter } from 'next/router';
 
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
+import NavDropDown from '../client_modules/components/DropDowns/NavDropDown/NavDropDown';
 
 // react
 import { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+
 
 // apollo
 import { TODOS } from '../client_modules/apollo_client/querys/todos';
 import { useGlobalState } from '../client_modules/hooks/useGlobalStateHook';
-import NavDropDown from '../client_modules/components/DropDowns/NavDropDown/NavDropDown';
+import { useQuery } from '@apollo/client';
+import { ME } from '../client_modules/apollo_client/querys/user'
+import { AppLayout, AppLayOutItems } from '../client_modules/styled_components/aligment';
+import Settings from '../client_modules/components/Settings/Settings';
+import ActionButton from '../client_modules/components/ActionButton/ActionButton';
+import TodoDropDown from '../client_modules/components/DropDowns/TodoDropDown/TodoDropDown';
+
 
 
 
@@ -33,6 +40,13 @@ export default function Home() {
     variables: {  "offset": offset, "limit": limit }
   });
 
+  const { data, loading, error } = useQuery(ME)
+
+  useEffect(() => {
+    console.log(error)
+    console.log(data)
+  }, [data])
+
   useEffect(() => {
     console.log(todoLoading)
     if(todoData) {
@@ -49,12 +63,19 @@ export default function Home() {
       </Head>
 
       <NavDropDown />
+      <TodoDropDown />
       <Navbar />
 
 
-      <div>
-        Hello World
-      </div>
+      <AppLayout>
+        <AppLayOutItems>
+          <Settings/>
+        </AppLayOutItems>
+        <AppLayOutItems>
+          <ActionButton />
+          Hi World
+        </AppLayOutItems>
+      </AppLayout>
       
       
     </>
