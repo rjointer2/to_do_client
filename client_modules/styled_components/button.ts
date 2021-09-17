@@ -51,3 +51,10 @@ export const SubmitButton = styled.button`
     color: ${white};
 `;
 
+
+export const SubmitBtn = styled.button`
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px ${white};
+    padding: 10px;
+    outline: none;
+`;

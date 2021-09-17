@@ -8,7 +8,7 @@ import Navbar from '../client_modules/components/Navbar/Navbar';
 import NavDropDown from '../client_modules/components/DropDowns/NavDropDown/NavDropDown';
 
 // react
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 // apollo
@@ -20,6 +20,7 @@ import { AppLayout, AppLayOutItems } from '../client_modules/styled_components/a
 import Settings from '../client_modules/components/Settings/Settings';
 import ActionButton from '../client_modules/components/ActionButton/ActionButton';
 import TodoDropDown from '../client_modules/components/DropDowns/TodoDropDown/TodoDropDown';
+import client from '../client_modules/apollo_client/configs/client';
 
 
 
@@ -28,7 +29,7 @@ import TodoDropDown from '../client_modules/components/DropDowns/TodoDropDown/To
 export default function Home() {
 
   const { state, dispatch } = useGlobalState();
-  const { menu } = state
+  const { menu, user } = state
 
 
 
@@ -36,23 +37,20 @@ export default function Home() {
   let offset = 0
   let limit = 10
 
-  const { data: todoData, error: todoError, loading: todoLoading, fetchMore: getMoreTodos } = useQuery(TODOS, {
-    variables: {  "offset": offset, "limit": limit }
-  });
 
   const { data, loading, error } = useQuery(ME)
 
-  useEffect(() => {
-    console.log(error)
-    console.log(data)
-  }, [data])
 
   useEffect(() => {
-    console.log(todoLoading)
-    if(todoData) {
-      console.log(todoData.todos)
+    if(data) {
+      dispatch({ type: "USER_LOGGED_IN", payload: data.me })
+    } else {
+      dispatch({ type: "USER_LOGGED_OUT", payload: null })
     }
-  }, [todoData]);
+    
+
+  }, [data])
+
 
   return (
     <>
@@ -72,8 +70,8 @@ export default function Home() {
           <Settings/>
         </AppLayOutItems>
         <AppLayOutItems>
-          <ActionButton />
-          Hi World
+          { user?.data && <ActionButton /> }
+          Hi World { user?.data && user?.data.username }
         </AppLayOutItems>
       </AppLayout>
       

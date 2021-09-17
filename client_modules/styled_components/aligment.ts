@@ -76,7 +76,7 @@ export const Card_TextArea = styled.textarea<Props>`
 
 export const Forum_Assest_Header = styled.div`
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 `;
 
 export const Forum_Items = styled.div`
@@ -87,8 +87,10 @@ export const Forum_Items = styled.div`
 `;
 
 export const Forum_Heading = styled.h1`
-    font-weight: 700;
+    font-weight: 500;
 `;
+
+
 
 
 

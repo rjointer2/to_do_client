@@ -1,6 +1,6 @@
 
 
-export const primary: string            = '#E7717D';
+export const primary: string            = '#5D001E';
 export const secondary: string          = '#CF6570';
 export const tertiary: string           = '#a7515a';
 export const gray: string               = '#C2CAD0';

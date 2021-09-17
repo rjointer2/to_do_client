@@ -18,10 +18,10 @@ const initialState: State = {
 
 const userReducer: Reducer<State, ActionMap> = ( state, action ) => {
     switch(action.type) {
-        case action.type: 
-        return {
-            ...state,
-        }
+        case "USER_LOGGED_IN": 
+        return { data: action.payload }
+        case "USER_LOGGED_OUT": 
+        return { data: null }
         default: return state
     }
 }

@@ -76,7 +76,7 @@ export default function signup() {
         <>
             <FormContainer>
                 <Form onSubmit={submitForm} >
-                    { formErrorState.isError && <CenterText>{formErrorState.errorMessage}</CenterText> }
+                    { formErrorState.isError && formErrorState.errorMessage }
                     <FormHeader>Sign Up Today!</FormHeader>
                     <FormLabel>Username</FormLabel>
                     <FormInput placeholder="Username" onChange={handleFormEvents} name="username"/>

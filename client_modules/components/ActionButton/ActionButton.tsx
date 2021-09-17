@@ -18,9 +18,6 @@ export default function ActionButton() {
     const { user, menu } = state;
 
     const dispatchMenu = () => {
-
-        console.log(pathname)
-
         return pathname === '/' ? dispatch({
             type: "MENU_TODO", payload: menu?.MENU_TODO
         }) : dispatch({

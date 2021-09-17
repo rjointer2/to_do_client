@@ -1,3 +1,4 @@
+import React from "react"
 
 export type Props = { 
     [index:string]: any
@@ -8,10 +9,32 @@ export type Props = {
     height: string
 }
 
+interface User {
+    username: string
+    id: string
+    email: string
+    todos: {
+        id: string
+        completed: boolean
+        subject: string
+        todo: object
+        dueDate: string
+        createdBy: {
+            id: string
+            username: string
+        }
+        likedBy: {
+            id: string
+            username: string
+        }
+        didUserLike: boolean
+    }
+}
+
 type BaseState = {
     [index: string]: any
     user: {
-        data: null | any
+        data: null | User
     }
     menu: {
         MENU_NAV: boolean

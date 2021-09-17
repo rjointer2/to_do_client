@@ -11,7 +11,7 @@ export const BaseDropDown = styled.aside<Props>`
     position: fixed;
     z-index: 999;
     width: 100%;
-    background: ${({ background }) => background};
+    background: #E3E2DF;
     display: grid;
     align-items: center;
     top: 0;

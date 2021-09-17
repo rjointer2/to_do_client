@@ -94,7 +94,7 @@ export const FormTextArea = styled.textarea`
 `;
 
 export const Select = styled.select`
-  width: 100%;
+  width: 40%;
   height: 35px;
   background: white;
   color: gray;
@@ -112,7 +112,18 @@ export const Select = styled.select`
     min-height: 20px;
     padding: 0px 2px 1px;
   }
+
+  @media screen and (max-width: 400px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 410px) {
+    width: 40%;
+  }
+
 `;
+
+
 export const TextArea = styled.textarea`
     outline: none;
     border: none;

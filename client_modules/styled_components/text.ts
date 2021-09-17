@@ -13,7 +13,7 @@ export const InlineText = styled.div`
     width: 90%;
 `;
 
-export const CenterText = styled.p`
+export const CenterText = styled("p")`
     text-align: center;
 `;
 
@@ -27,7 +27,6 @@ export const TextUL = styled.ul`
         display: inline;
     }
 `;
-
 
 export const SubjectText = styled.p`
     font-size: 14px;
