@@ -9,7 +9,7 @@ export type Props = {
     height: string
 }
 
-interface User {
+export interface User {
     username: string
     id: string
     email: string
@@ -30,6 +30,8 @@ interface User {
         didUserLike: boolean
     }
 }
+
+const keys = Object.keys({ "hello": "world" });
 
 type BaseState = {
     [index: string]: any

@@ -12,12 +12,16 @@ import { useGlobalState } from '../../hooks/useGlobalStateHook'
 export default function Navbar() {
 
     const { state, dispatch } = useGlobalState();
-    const { menu } = state;
+    const { menu, user } = state;
     
     return (
         <NavContainer>
             <NavWrapper>
-                <LogoIcon />
+                <Link href="/">
+                    <div>
+                        <LogoIcon /> { user?.data && "Weclome, Back " + user?.data.username + "!" }
+                    </div>
+                </Link>
                 <MenuIcon  onClick={() => dispatch({ type: 'MENU_NAV', payload: menu?.MENU_NAV })} />
             </NavWrapper>
         </NavContainer>

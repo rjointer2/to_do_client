@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // icons
 import { FaTimes } from "react-icons/fa";
-import { primary, secondary, tertiary, white } from "./palette";
+import { primary, secondary, dark, white } from "./palette";
 
 export const BtnWrapper = styled.div`
     display: flex;
@@ -33,11 +33,11 @@ export const BtnLink = styled.button`
 `;
 
 export const CloseButton = styled(FaTimes)`
-    color: ${white};
+    color: ${primary};
 
     &.active {
         transition: all 0.2s ease-in-out;
-        color: ${tertiary}
+        color: ${dark}
     }
 `;
 

@@ -27,7 +27,6 @@ const userReducer: Reducer<State, ActionMap> = ( state, action ) => {
 }
 
 const menuReducer: Reducer<State, ActionMap> = ( state, action ) => {
-    
     state[action.type] = !action.payload
     return state
 }

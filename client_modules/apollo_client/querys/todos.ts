@@ -5,7 +5,21 @@ export const TODOS = gql`
     query ($offset: Int!, $limit: Int!) {
         todos(offset: $offset, limit: $limit) {
             id 
+            createdBy {
+                id
+                username
+            }
             subject
+            completed
+            todo
+            createdAt
+            didUserLike
+            likedBy {
+                id
+            }
+            comments {
+                id
+            }
         }
     }
 `;
@@ -13,28 +27,21 @@ export const TODOS = gql`
 export const GET_TODO_BY_ID = gql`
     query( $id: String! ) {
         getTodoById( id: $id ) {
-            _id
-            completed
-            subject
-            todo
-            dueDate
+            id 
             createdBy {
-                _id
+                id
                 username
             }
-            likedBy {
-                _id
-                username
-            }
+            subject
+            completed
+            todo
+            createdAt
             didUserLike
+            likedBy {
+                id
+            }
             comments {
-                _id
-                comment
-                createdBy {
-                    _id
-                    username
-                }
-                createdAt
+                id
             }
         }
     }

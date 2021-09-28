@@ -26,17 +26,14 @@ export default function Settings() {
     return (
         <SettingsContainer>
             <SettingsItems>
-                <AiOutlineSearch/>
+                <AiOutlineSearch/> Search
             </SettingsItems>
-            <Link href="/usersettings" >
-                <SettingsItems>
-                    <RiUserSettingsLine/>
-                </SettingsItems>
-            </Link>
-            <Link href={`/userpage/`}>
-                <SettingsItems><IoMdPaper/>
-                </SettingsItems>
-            </Link>
+            <SettingsItems>
+                <RiUserSettingsLine/> Settings
+            </SettingsItems>
+            <SettingsItems>
+                <IoMdPaper/> Todos...
+            </SettingsItems>
         </SettingsContainer>
     )
 }

@@ -3,20 +3,22 @@ import { gql, InMemoryCache } from "@apollo/client";
 
 const todoFragment = gql`
   fragment todos on Todo {
-    _id
-    completed
-    subject
-    todo
-    dueDate
-    createdBy {
-        _id
+      id 
+      createdBy {
+        id
         username
-    }
-    likedBy {
-        _id
-        username
-    }
-    didUserLike
+      }
+      subject
+      completed
+      todo
+      createdAt
+      didUserLike
+      likedBy {
+        id
+      }
+      comments {
+        id
+      }
   }
 `;
 
@@ -25,7 +27,6 @@ const cache = new InMemoryCache({
       Query: {
         fields: {
           todos: {
-            keyArgs: ["_id"],
             merge(existing = [], incoming: Array<any>, { isReference, cache, variables }) {
               console.log(existing)
               // the incoming is the same array as the first fetch so tru in the varaibles + 10 here

@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 // palette
-import { tertiary, secondary, hover_secondary, white } from "./palette";
+import { secondary, hover_secondary, white } from "./palette";
 import { Props } from "../types";
 
 
@@ -61,7 +61,6 @@ export const FormInput = styled.input`
     background-color: inherit;
 
     & ::placeholder {
-        color: ${tertiary};
         font-size: 14px;
     }
 
@@ -84,7 +83,6 @@ export const FormTextArea = styled.textarea`
     resize: none;
 
     & ::placeholder {
-        color: ${tertiary};
         font-size: 14px;
     }
 

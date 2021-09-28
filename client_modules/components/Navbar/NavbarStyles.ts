@@ -7,7 +7,7 @@ import { hover_primary, hover_secondary, primary, white } from "../../styled_com
 
 export const NavContainer = styled.nav`
     color: ${white};
-    background: ${primary};
+    background: #3AAFA9;
     height: 80px;
     display: flex;
     justify-content: center;

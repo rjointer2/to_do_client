@@ -6,21 +6,25 @@ import { useRouter } from 'next/router';
 // components
 import Navbar from '../client_modules/components/Navbar/Navbar';
 import NavDropDown from '../client_modules/components/DropDowns/NavDropDown/NavDropDown';
-
-// react
-import { useEffect, useRef, useState } from 'react';
-
-
-// apollo
-import { TODOS } from '../client_modules/apollo_client/querys/todos';
-import { useGlobalState } from '../client_modules/hooks/useGlobalStateHook';
-import { useQuery } from '@apollo/client';
-import { ME } from '../client_modules/apollo_client/querys/user'
 import { AppLayout, AppLayOutItems } from '../client_modules/styled_components/aligment';
 import Settings from '../client_modules/components/Settings/Settings';
 import ActionButton from '../client_modules/components/ActionButton/ActionButton';
 import TodoDropDown from '../client_modules/components/DropDowns/TodoDropDown/TodoDropDown';
-import client from '../client_modules/apollo_client/configs/client';
+import Todos from '../client_modules/components/Todos/Todos';
+
+// react
+import React, { useEffect, useRef, useState } from 'react';
+import { useGlobalState } from '../client_modules/hooks/useGlobalStateHook';
+import { dispatchUserState } from '../client_modules/hooks/useDispatchUserState';
+
+
+// apollo
+import { TODOS } from '../client_modules/apollo_client/querys/todos';
+import { FetchMoreOptions, FetchMoreQueryOptions, useQuery } from '@apollo/client';
+import { ME } from '../client_modules/apollo_client/querys/user';
+import useTodos from '../client_modules/hooks/useTodos';
+
+
 
 
 
@@ -29,27 +33,14 @@ import client from '../client_modules/apollo_client/configs/client';
 export default function Home() {
 
   const { state, dispatch } = useGlobalState();
-  const { menu, user } = state
+  const { menu, user } = state;
 
+  const { todos } = useTodos()
 
+  const { data, loading, error } = useQuery(ME);
+  useEffect(() => dispatchUserState({ data, dispatch }), [data]);
 
-
-  let offset = 0
-  let limit = 10
-
-
-  const { data, loading, error } = useQuery(ME)
-
-
-  useEffect(() => {
-    if(data) {
-      dispatch({ type: "USER_LOGGED_IN", payload: data.me })
-    } else {
-      dispatch({ type: "USER_LOGGED_OUT", payload: null })
-    }
-    
-
-  }, [data])
+  const [spinner, setSpinner] = useState(false);
 
 
   return (
@@ -71,7 +62,11 @@ export default function Home() {
         </AppLayOutItems>
         <AppLayOutItems>
           { user?.data && <ActionButton /> }
-          Hi World { user?.data && user?.data.username }
+          { todos && todos.map(( todo: any, index: number ) => (
+            <React.Fragment key={index}>
+              <Todos todo={todo}/>
+            </React.Fragment>
+          )) }
         </AppLayOutItems>
       </AppLayout>
       

@@ -1,12 +1,12 @@
 
 import styled from "styled-components";
 import { Props } from "../types";
-import { primary, white } from "./palette";
+import { dark, primary, white } from "./palette";
 
 
 export const AppLayout = styled.div`
     display: grid;
-    grid-template-columns: 10% 80%;
+    grid-template-columns: 15% 80%;
     padding-top: 10px;
 
     @media screen and (max-width: 700px) {
@@ -33,13 +33,13 @@ export const Card_Master = styled.div`
     align-items: flex-start;
     margin-bottom: 30px;
     justify-content: center;
+    color: ${dark};
+    font-size: 12px;
 `;
 
 export const Card_Context = styled.div`
     border-radius: 4px;
-    background: ${primary};
-    color: ${white};
-    box-shadow: 0 0 0 1px ${white};
+    box-shadow: 0 0 0 1px ${dark};
     width: 70%;
     padding: 10px;
     margin-left: 20px;
@@ -50,6 +50,10 @@ export const Card_Context = styled.div`
 export const Card_Info_Top_Master = styled.div`
     display: flex;
     padding-bottom: 20px;
+
+    @media screen and (max-width: 420px) {
+        flex-direction: column;
+    }
 `;
 
 export const Card_Info_Top_Item = styled.div`
@@ -69,7 +73,7 @@ export const Card_TextArea = styled.textarea<Props>`
     border-color: Transparent;
 
     &::placeholder {
-        color: white;
+        color: ${dark};
         font-size: 15px;
     }
 `;
@@ -90,6 +94,14 @@ export const Forum_Heading = styled.h1`
     font-weight: 500;
 `;
 
+export const Forum_Actions = styled.div`
+    padding-left: 10%;
+    display: flex;
+`;
+
+export const Forum_Action_Items = styled.div`
+    padding-left: 10%;
+`;
 
 
 

@@ -22,7 +22,7 @@ export default function NavDropDown() {
             <CloseButton onClick={() => dispatch({ type: "MENU_NAV", payload: menu?.MENU_NAV })} />
             <NavDropDownWrapper>
                 <NavDropDownMenu>
-                    <Link href="#">
+                    <Link href="/">
                         <NavDropDownLink>
                             Home
                         </NavDropDownLink>

@@ -1,10 +1,10 @@
 
 
-export const primary: string            = '#5D001E';
-export const secondary: string          = '#CF6570';
-export const tertiary: string           = '#a7515a';
-export const gray: string               = '#C2CAD0';
+export const primary: string            = '#2B7A78';
+export const secondary: string          = '#5D001E';
+export const dark: string               = '#17225A';
+export const gray: string               = '#DEF2F1';
 export const hover_primary: string      = '#C2B9B0';        
 export const hover_secondary: string    = '#AFD275';
-export const white: string              = '#fff';
+export const white: string              = '#FEFFFF';
 export const lightbrown: string         = '#C2B9B0';

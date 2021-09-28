@@ -15,27 +15,12 @@ import { CloseButton, SubmitBtn } from '../../../styled_components/button';
 import { useMutation } from '@apollo/client';
 import { ADD_TODO } from '../../../apollo_client/mutations/todo';
 
-// moment
-import moment from "moment";
 import { formErrorReducer, initialFormErrorState } from '../../../hooks/useFormErrorHook';
 import { Select } from '../../../styled_components/form';
-import { CenterText } from '../../../styled_components/text';
+import getDates from '../../../lib/getDate';
 
 
 export default function TodoDropDown() {
-
-    // momentjs to get the next 7 days!
-    const getDates = () => {
-        let days: Array<string> = [];
-        for (let i = 1; i <= 7; i++) {
-            days.push(moment().add(i, 'days').format('dddd, Do MMMM YYYY') );
-        }
-
-        return {
-            getToday: () => days[0],
-            getWeek: () => days
-        }
-    }
 
     // global state
     const { state, dispatch } = useGlobalState();
@@ -45,7 +30,7 @@ export default function TodoDropDown() {
     const [ addTodo ] = useMutation(ADD_TODO);
 
     // local state 
-    const [date, setDate] = useState(moment().format('dddd, Do MMMM YYYY'));
+    const [date, setDate] = useState(getDates().getToday());
     const [form, setForm] = useState({ subject: '', todo: '', dueDate: getDates().getToday()});
     const [spinner, setSpinner] = useState(false);
 
