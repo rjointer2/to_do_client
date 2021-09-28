@@ -17,3 +17,15 @@ export const ME = gql`
     }
 `;
 
+export const USER_BY_ID = gql`
+    {
+        user { 
+            username
+            todos {
+                id
+                username
+            }
+        }
+    }
+`;
+
