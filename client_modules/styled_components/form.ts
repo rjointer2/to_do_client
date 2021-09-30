@@ -57,7 +57,7 @@ export const FormInput = styled.input`
     font-size: 16px;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,0.4);
-    text-align: left;
+    text-align: center;
     background-color: inherit;
 
     & ::placeholder {

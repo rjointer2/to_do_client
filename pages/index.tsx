@@ -10,7 +10,7 @@ import { AppLayout, AppLayOutItems } from '../client_modules/styled_components/a
 import Settings from '../client_modules/components/Settings/Settings';
 import ActionButton from '../client_modules/components/ActionButton/ActionButton';
 import TodoDropDown from '../client_modules/components/DropDowns/TodoDropDown/TodoDropDown';
-import Todos from '../client_modules/components/Todos/Todos';
+import Todos from '../client_modules/components/Todo/Todo';
 
 // react
 import React, { useEffect, useRef, useState } from 'react';
@@ -61,10 +61,11 @@ export default function Home() {
           <Settings/>
         </AppLayOutItems>
         <AppLayOutItems>
+        All Todos
           { user?.data && <ActionButton /> }
           { todos && todos.map(( todo: any, index: number ) => (
             <React.Fragment key={index}>
-              <Todos todo={todo}/>
+              <Todos todo={todo} userID={user?.data?.id}/>
             </React.Fragment>
           )) }
         </AppLayOutItems>

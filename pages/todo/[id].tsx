@@ -5,7 +5,7 @@ import NavDropDown from '../../client_modules/components/DropDowns/NavDropDown/N
 import TodoDropDown from '../../client_modules/components/DropDowns/TodoDropDown/TodoDropDown';
 import Navbar from '../../client_modules/components/Navbar/Navbar';
 import Settings from '../../client_modules/components/Settings/Settings';
-import Todos from '../../client_modules/components/Todos/Todos';
+import Todo from '../../client_modules/components/Todo/Todo';
 import useTodos from '../../client_modules/hooks/useTodos';
 import { AppLayout, AppLayOutItems } from '../../client_modules/styled_components/aligment';
 
@@ -31,7 +31,7 @@ export default function todoPage() {
                 <Settings/>
                 </AppLayOutItems>
                 <AppLayOutItems>
-                { todos && <Todos todo={todos}/> }
+                { todos && <Todo todo={todos} userID="" /> }
                 </AppLayOutItems>
             </AppLayout>
         </div>

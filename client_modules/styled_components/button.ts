@@ -57,4 +57,5 @@ export const SubmitBtn = styled.button`
     box-shadow: 0 0 0 1px ${white};
     padding: 10px;
     outline: none;
+    width: 80px;
 `;

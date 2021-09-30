@@ -46,3 +46,31 @@ export const GET_TODO_BY_ID = gql`
         }
     }
 `;
+
+export const GET_TODOS_BY_USER = gql`
+    query($id: String!) {
+        userTodos(id: $id) {
+            id
+            username
+            todos {
+                id 
+                createdBy {
+                    id
+                    username
+                }
+                subject
+                completed
+                todo
+                createdAt
+                didUserLike
+                likedBy {
+                    id
+                }
+                comments {
+                    id
+                }
+            }
+            
+        }
+    }
+`;

@@ -16,3 +16,20 @@ export const LIKE_TODO = gql`
         }
     }
 `;
+
+export const UPDATE_TODO = gql`
+    mutation updateTodo( $option: String!, $id: String!, $value: String! ) {
+        updateTodo( option: $option, id: $id, value: $value ) {
+            id
+        }
+    }
+`;
+
+export const DELETE_TODO = gql`
+    mutation deleteTodo( $id: String! ) {
+        deleteTodo( id: $id ) {
+            id
+            
+        }
+    }
+`;

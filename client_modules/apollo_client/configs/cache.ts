@@ -3,24 +3,29 @@ import { gql, InMemoryCache } from "@apollo/client";
 
 const todoFragment = gql`
   fragment todos on Todo {
-      id 
-      createdBy {
-        id
-        username
-      }
-      subject
-      completed
-      todo
-      createdAt
-      didUserLike
-      likedBy {
-        id
-      }
-      comments {
-        id
-      }
+    id 
+    createdBy {
+      id
+      username
+    }
+    subject
+    completed
+    todo
+    createdAt
+    didUserLike
+    likedBy {
+      id
+    }
+    comments {
+      id
+    }
   }
 `;
+
+/* 
+
+
+*/
 
 const cache = new InMemoryCache({
     typePolicies: {

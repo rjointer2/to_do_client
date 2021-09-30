@@ -65,7 +65,7 @@ export const Card_TextArea = styled.textarea<Props>`
     height: ${({ height }) => height};
     background: none;
     border: none;
-    font-size: 15px;
+    font-size: 11px;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -74,7 +74,7 @@ export const Card_TextArea = styled.textarea<Props>`
 
     &::placeholder {
         color: ${dark};
-        font-size: 15px;
+        font-size: 11px;
     }
 `;
 

@@ -18,14 +18,28 @@ export const ME = gql`
 `;
 
 export const USER_BY_ID = gql`
-    {
-        user { 
+    query($id: String!) {
+        user(id: $id) {
             username
+            id
+            email
             todos {
-                id
-                username
+                id 
+                createdBy {
+                    id
+                    username
+                }
+                todo
+                subject
+                completed
+                didUserLike
+                likedBy {
+                    id
+                }
+                comments {
+                    id
+                }
             }
         }
     }
 `;
-

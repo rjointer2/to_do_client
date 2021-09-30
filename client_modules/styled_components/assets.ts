@@ -5,10 +5,12 @@ import styled from "styled-components";
 import { primary, white } from "./palette";
 
 // icons
-import { RiTodoLine } from 'react-icons/ri';
+import { RiTodoLine } from "react-icons/ri";
 import { AiFillHeart, AiOutlineHeart, AiOutlineMenu } from 'react-icons/ai';
 import { RiChat1Line } from 'react-icons/ri';
-import { GrStatusGoodSmall } from 'react-icons/gr'
+import { GrStatusGoodSmall } from 'react-icons/gr';
+import { BsPencil } from 'react-icons/bs';
+import { FiTrash } from 'react-icons/fi';
 
 // this will be a regular archor tag but it's wrapped with the next/link
 export const LogoIcon = styled(RiTodoLine)`
@@ -58,3 +60,10 @@ export const AvatarCircle = styled.img`
     width: 50px;
 `;
 
+export const EditIcon = styled(BsPencil)`
+
+`;
+
+export const TrashIcon = styled(FiTrash)`
+    
+`;
