@@ -35,10 +35,7 @@ export default function Home() {
   const { state, dispatch } = useGlobalState();
   const { menu, user } = state;
 
-  const { todos } = useTodos()
-
-  const { data, loading, error } = useQuery(ME);
-  useEffect(() => dispatchUserState({ data, dispatch }), [data]);
+  const { todos } = useTodos();
 
   const [spinner, setSpinner] = useState(false);
 

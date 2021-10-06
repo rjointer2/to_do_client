@@ -18,11 +18,21 @@ export default function ActionButton() {
     const { user, menu } = state;
 
     const dispatchMenu = () => {
-        return pathname === '/' ? dispatch({
-            type: "MENU_TODO", payload: menu?.MENU_TODO
-        }) : dispatch({
-            type: "MENU_COMMENT", payload: menu?.MENU_COMMENT
-        })
+
+        console.log('state: ', menu)
+
+        if(pathname.includes("todo")) {
+            dispatch({
+                type: "MENU_COMMENT", payload: menu?.MENU_COMMENT
+            })
+        }
+
+        if(pathname === '/' ) {
+            dispatch({
+                type: "MENU_TODO", payload: menu?.MENU_TODO
+            }) 
+        }
+
     }
 
     return (

@@ -104,5 +104,9 @@ export const Forum_Action_Items = styled.div`
 `;
 
 
-
-
+export const CenteredDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+`;

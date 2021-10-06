@@ -42,6 +42,12 @@ export const GET_TODO_BY_ID = gql`
             }
             comments {
                 id
+                createdBy {
+                    id
+                    username
+                }
+                createdAt
+                comment
             }
         }
     }

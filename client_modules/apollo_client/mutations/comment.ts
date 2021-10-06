@@ -5,7 +5,7 @@ export const ADD_COMMENT = gql`
     mutation addComment( $createdBy: String!, $comment: String!, $todoID: String! ) {
         addComment( createdBy: $createdBy, comment: $comment, todoID: $todoID ) {
             comment
-            _id
+            id
         }
     }
 `;

@@ -30,7 +30,7 @@ export default function Settings() {
                     <AiOutlineSearch/> Search
                 </SettingsItems>
             </Link>
-            <Link href="/settings">
+            <Link href="/settings ">
                 <SettingsItems>
                     <RiUserSettingsLine/> Settings
                 </SettingsItems>
