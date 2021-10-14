@@ -14,7 +14,6 @@ import { GlobalState } from '../client_modules/hooks/useGlobalStateHook';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  
   return (
     <ApolloProvider client={client}>
       <GlobalState>
