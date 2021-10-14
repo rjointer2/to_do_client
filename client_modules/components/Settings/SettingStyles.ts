@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 // palette
-import { primary, white } from "../../styled_components/palette";
+import { primary } from "../../styled_components/palette";
 
 
 export const SettingsContainer = styled.div`
@@ -18,5 +18,4 @@ export const SettingsItems = styled.a`
     padding-bottom: 30px;
     padding-top: 10px;
     font-size: 15px;
-
 `;

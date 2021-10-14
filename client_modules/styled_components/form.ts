@@ -1,5 +1,4 @@
 
-
 import styled from "styled-components";
 
 // palette
@@ -159,6 +158,7 @@ export const FormFooter = styled.div`
 `;
 
 export const FormLink = styled.a`
+    font-size: 11px;
     padding: 2px;
     text-decoration: none;
 

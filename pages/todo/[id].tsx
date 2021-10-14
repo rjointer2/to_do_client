@@ -1,6 +1,14 @@
 
+// next
 import { useRouter } from 'next/router'
+import Link from "next/link"
+
+// react
 import React from 'react'
+import useTodo from '../../client_modules/hooks/useTodo';
+import { useGlobalState } from '../../client_modules/hooks/useGlobalStateHook'
+
+// components
 import ActionButton from '../../client_modules/components/ActionButton/ActionButton';
 import CommentDropDown from '../../client_modules/components/DropDowns/CommentDropDown/CommentDropDown';
 import NavDropDown from '../../client_modules/components/DropDowns/NavDropDown/NavDropDown';
@@ -8,14 +16,17 @@ import TodoDropDown from '../../client_modules/components/DropDowns/TodoDropDown
 import Navbar from '../../client_modules/components/Navbar/Navbar';
 import Settings from '../../client_modules/components/Settings/Settings';
 import Todo from '../../client_modules/components/Todo/Todo';
-import useTodos from '../../client_modules/hooks/useTodos';
 import { AppLayout, AppLayOutItems, Card_Context, Card_Info_Top_Item, Card_Info_Top_Master, Card_Master, Forum_Actions, Forum_Action_Items, Forum_Assest_Header } from '../../client_modules/styled_components/aligment';
+
+// styles
 import { AvatarCircle, TrashIcon } from '../../client_modules/styled_components/assets';
 import { CenterText } from '../../client_modules/styled_components/text';
-import Link from "next/link"
-import { useGlobalState } from '../../client_modules/hooks/useGlobalStateHook';
+
+// apollo
 import { ApolloError, useMutation } from '@apollo/client';
 import { DELETE_COMMENT } from '../../client_modules/apollo_client/mutations/comment';
+import UserAvatar from '../../client_modules/components/UserAvatar/UserAvatar';
+
 
 export default function todoPage() {
 
@@ -25,31 +36,36 @@ export default function todoPage() {
     const route = useRouter();
     const { id } = route.query;
 
-    const { todos } = useTodos(id as string)
-    console.log(todos);
+    const todo = useTodo(id)
 
     const [deleteComment] = useMutation(DELETE_COMMENT);
     
     return (
-        <div>
+        <>
+            <title>Todo Page</title>
+            <link rel="manifest" href="/manifest.webmanifest" />
+            <link rel="apple-touch-icon" href="/icon.png"></link>
+            <link rel="icon" href="/icon.png"></link>
+            <meta name="theme-color" content="#fff" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="description" content="Sign in to get all the features of the todo page!"  />
+
             <NavDropDown />
             <TodoDropDown />
-            <CommentDropDown />
+            { user && <CommentDropDown /> }
             <Navbar />
 
-            <AppLayout>
+            { user && <AppLayout>
                 <AppLayOutItems>
                 <Settings/>
                 </AppLayOutItems>
                 <AppLayOutItems>
-                { todos && <Todo todo={todos} userID="" /> }
+                { todo && <Todo todo={todo} userID={user.id} /> }
                 <CenterText>Comments</CenterText><br/>
-                { todos && todos.comments.map(( comment: any, index: number ) => (
+                { todo && todo.comments.map(( comment, index ) => (
                     <React.Fragment key={index}>
                         <Card_Master>
-                            <Link href={`/user/${comment.createdBy.id}`} >
-                                <AvatarCircle src='/placeholder.png' alt="Cat" />
-                            </Link>
+                        <UserAvatar url={comment.createdBy.picture} />
                             <Card_Context>
                                 <Card_Info_Top_Master>
                                 <Card_Info_Top_Item>
@@ -62,7 +78,7 @@ export default function todoPage() {
                                     { comment.comment }
                             </Card_Context>
                         </Card_Master>
-                        { user?.data && user.data.id === comment.createdBy.id && <Card_Master>
+                        { user && user.id === comment.createdBy.id && <Card_Master>
                             <Forum_Assest_Header>
                                 <Forum_Actions>
                                     <Forum_Action_Items>
@@ -84,10 +100,8 @@ export default function todoPage() {
                 )) }
                 </AppLayOutItems>
                 <ActionButton />
-            </AppLayout>
-        </div>
+            </AppLayout> }
+        </>
     )
 }
 
-
-// <TrashIcon/> Delete Comment?

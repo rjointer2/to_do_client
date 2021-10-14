@@ -10,11 +10,19 @@ import { NavDropDownLink, NavDropDownMenu, NavDropDownWrapper } from './NavDropD
 import { BaseDropDown } from '../../../styled_components/dropdown'
 import { useGlobalState } from '../../../hooks/useGlobalStateHook'
 import { primary } from '../../../styled_components/palette'
+import { useMutation } from '@apollo/client'
+import { SIGN } from '../../../apollo_client/mutations/user'
 
 export default function NavDropDown() {
 
     const { state, dispatch } = useGlobalState();
     const { menu, user } = state
+
+    const [signOut] = useMutation(SIGN)
+
+    const handleSignOut = async () => {
+        if(user) await signOut({ variables: { "type": "sign_out" } })
+    }
 
 
     return (
@@ -23,30 +31,25 @@ export default function NavDropDown() {
             <NavDropDownWrapper>
                 <NavDropDownMenu>
                     <Link href="/">
-                        <NavDropDownLink>
+                        <NavDropDownLink onClick={() => dispatch({ type: "MENU_NAV", payload: menu?.MENU_NAV })} >
                             Home
                         </NavDropDownLink>
                     </Link>
-                    {user?.data && <>
-                        <Link href="#">
-                            <NavDropDownLink>
-                                Home
+                    {user && <>
+                        <Link href="settings">
+                            <NavDropDownLink onClick={() => dispatch({ type: "MENU_NAV", payload: menu?.MENU_NAV })} >
+                                User Settings
                             </NavDropDownLink>
                         </Link>
-                        <Link href="#">
-                            <NavDropDownLink>
-                                Home
-                            </NavDropDownLink>
-                        </Link>
-                        <Link href="#">
-                            <NavDropDownLink>
-                                Home
+                        <Link href="search">
+                            <NavDropDownLink onClick={() => dispatch({ type: "MENU_NAV", payload: menu?.MENU_NAV })} >
+                                Search For Users
                             </NavDropDownLink>
                         </Link>
                     </>}
                     <Link href={'/signin'}>
-                        <NavDropDownLink>
-                            { user?.data ? 'Sign Out' : 'Sign In' }
+                        <NavDropDownLink onClick={handleSignOut} >
+                            { user ? 'Sign Out' : 'Sign In' }
                         </NavDropDownLink>
                     </Link>
                 </NavDropDownMenu>

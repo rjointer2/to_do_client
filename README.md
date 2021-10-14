@@ -17,9 +17,8 @@ reference/resource to those looking to learn Apollo GraphQL or looking to
 migrate from redux / other standard state management and seek Apollo as a 
 alternative.
 
-Additionally this is Progessive Web and SEO Standardized Application.
-It's installable, has a offline service-worker, has high score across the 
-lighthouse audit :]
+Incoming Feature
+Service Worker
 
 ## Install
 
@@ -30,10 +29,12 @@ ________________________________________________________________________
 In your terminal ( best usage with Visual Studio Text Editor and Intergrated Terminal ) use the command ``` npm i ``` to install all current packages 
 this software usages
 
-## Usage
+## For Recreation
 
 To run this application use ``` npm run build ``` then ``` npm run production ``` to serve
 the latest build static files
+
+Download the to_do_backend repo and follow instruction
 
 For Local Development ( after setting up your own db and jwt configs ) you may 
 ``` npm run development ```

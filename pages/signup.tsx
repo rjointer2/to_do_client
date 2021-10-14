@@ -4,7 +4,7 @@ import { formErrorReducer, initialFormErrorState } from '../client_modules/hooks
 
 // apollo 
 import { SIGN } from '../client_modules/apollo_client/mutations/user';
-import { useMutation } from '@apollo/client';
+import { ApolloError, useMutation } from '@apollo/client';
 
 // styles
 import { Form, FormContainer, FormFooter, FormHeader, FormInput, FormLabel, FormLink } from '../client_modules/styled_components/form';
@@ -15,12 +15,14 @@ import { CenterText } from '../client_modules/styled_components/text';
 // components
 import Loading from '../client_modules/components/Loading/Loading';
 
+
+
 export default function signup() {
 
     // local state
     const [ formErrorState, formErrorDispatch ] = useReducer( formErrorReducer, initialFormErrorState );
     const [ form, setForm ] = useState({ username: '', password: '', confirmPassword: '', email: '' });
-    const [ spinner, setSpinner ] = useState(false)
+    const [ spinner, setSpinner ] = useState(false);
 
     // apollo
     const [sign] = useMutation(SIGN);
@@ -30,7 +32,6 @@ export default function signup() {
     const handleFormEvents = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value });
-        console.log(form)
         formErrorDispatch({ type: "EXIT_FORM_ERROR" });
     }
 
@@ -64,19 +65,27 @@ export default function signup() {
             });
             // directs users to the home page, then the home page authenticates user
             window.location.assign('/')
-        } catch(error: any) {
+        } catch(err) {
+            const error = err as ApolloError
             formErrorDispatch({ type: "INIT_FORM_ERROR", payload: error.message  });
             setSpinner(false)
         }
     }
 
     
-
     return (
         <>
+            <title>Todo Sign Up</title>
+            <link rel="manifest" href="/manifest.webmanifest" />
+            <link rel="apple-touch-icon" href="/icon.png"></link>
+            <link rel="icon" href="/icon.png"></link>
+            <meta name="theme-color" content="#fff" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="description" content="Sign up to get all the features of the todo page!"  />
+
             <FormContainer>
                 <Form onSubmit={submitForm} >
-                    { formErrorState.isError && formErrorState.errorMessage }
+                    { formErrorState.isError && <CenterText>{ formErrorState.errorMessage }!</CenterText> }
                     <FormHeader>Sign Up Today!</FormHeader>
                     <FormLabel>Username</FormLabel>
                     <FormInput placeholder="Username" onChange={handleFormEvents} name="username"/>

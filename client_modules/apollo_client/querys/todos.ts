@@ -1,25 +1,12 @@
 
 import { gql } from '@apollo/client';
+import { todoFragment } from '../configs/fragemnts';
 
 export const TODOS = gql`
+    ${todoFragment}
     query ($offset: Int!, $limit: Int!) {
         todos(offset: $offset, limit: $limit) {
-            id 
-            createdBy {
-                id
-                username
-            }
-            subject
-            completed
-            todo
-            createdAt
-            didUserLike
-            likedBy {
-                id
-            }
-            comments {
-                id
-            }
+           ...todos
         }
     }
 `;
@@ -31,6 +18,7 @@ export const GET_TODO_BY_ID = gql`
             createdBy {
                 id
                 username
+                picture
             }
             subject
             completed
@@ -45,6 +33,7 @@ export const GET_TODO_BY_ID = gql`
                 createdBy {
                     id
                     username
+                    picture
                 }
                 createdAt
                 comment
@@ -54,29 +43,14 @@ export const GET_TODO_BY_ID = gql`
 `;
 
 export const GET_TODOS_BY_USER = gql`
+    ${todoFragment}
     query($id: String!) {
         userTodos(id: $id) {
             id
             username
             todos {
-                id 
-                createdBy {
-                    id
-                    username
-                }
-                subject
-                completed
-                todo
-                createdAt
-                didUserLike
-                likedBy {
-                    id
-                }
-                comments {
-                    id
-                }
+                ...todos
             }
-            
         }
     }
 `;

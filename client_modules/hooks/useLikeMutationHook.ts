@@ -1,3 +1,4 @@
+
 import { useMutation } from "@apollo/client";
 import { LIKE_TODO } from "../apollo_client/mutations/todo";
 import { TODOS } from "../apollo_client/querys/todos";
@@ -19,10 +20,9 @@ export default function useLikeMutation() {
             variables: { "id": id, "type": didLiked ? 'unlike' : 'like' },
         })
         console.log('hi')
-    } catch(error) {
-        console.log('oops')
-    }
-
+        } catch(error) {
+            console.log('oops')
+        }
     }
 
     return { setLikeMutation }

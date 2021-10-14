@@ -1,13 +1,11 @@
 
 import { ReactNode, useContext, useReducer } from "react";
-import { ActionMap, Reducer, State } from "../types";
+import { ActionMap, Reducer, combineReducersType, State } from "../types";
 import { createContext } from 'react';
 
 
 const initialState: State = {
-    user: {
-        data: null
-    },
+    user: null,
     menu: {
         MENU_NAV: false,
         MENU_TODO: false,
@@ -19,9 +17,9 @@ const initialState: State = {
 const userReducer: Reducer<State, ActionMap> = ( state, action ) => {
     switch(action.type) {
         case "USER_LOGGED_IN": 
-        return { data: action.payload }
+        return action.payload 
         case "USER_LOGGED_OUT": 
-        return { data: null }
+        return null
         default: return state
     }
 }
@@ -31,11 +29,7 @@ const menuReducer: Reducer<State, ActionMap> = ( state, action ) => {
     return state
 }
 
-type reduceReducers<S, A> = (
-    reducers: { [P in keyof S]: Reducer<S, A> }
-) => Reducer<S, A>;
-
-const combineReducers: reduceReducers<State, ActionMap> = (reducers) => (state, action) =>
+const combineReducers: combineReducersType<State, ActionMap> = (reducers) => (state, action) =>
   Object.keys(reducers).reduce(
     (acc, prop) => ({
       ...acc,

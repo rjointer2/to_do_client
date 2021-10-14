@@ -22,5 +22,3 @@ export const ActionBtn = styled(BiPencil)<Props>`
     transition: .7s ease-in-out;
     padding: 10px;
 `;
-
-// opacity: ${({ show }) => (show ? '100%' : '0' )};

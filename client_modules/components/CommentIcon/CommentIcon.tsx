@@ -5,12 +5,14 @@ import { Forum_Action_Items } from '../../styled_components/aligment'
 import { CommentBubble } from '../../styled_components/assets'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { Todo } from '../../types';
 
-export default function CommentIcon({ todo } : { todo: any }) {
+export default function CommentIcon({ todo } : { todo: Todo }) {
 
     const route = useRouter();
     const pathname = route.pathname
-    console.log(pathname.includes("todo"))
+
+    console.log(pathname)
 
     return (
         <>

@@ -2,16 +2,16 @@
 
 import React from 'react'
 import { Card_Context, Card_Info_Top_Item, Card_Info_Top_Master, Card_Master, Forum_Actions, Forum_Action_Items, Forum_Assest_Header } from '../../styled_components/aligment'
-import { AvatarCircle } from '../../styled_components/assets'
-import Link from 'next/link'
-import { CenterText } from '../../styled_components/text'
 
-export default function UserProfile({ user } : { user: any }) {
+import { User } from '../../types'
+import UserAvatar from '../UserAvatar/UserAvatar'
+
+export default function UserProfile({ user } : { user: User }) {
     return (
         <div>
             <br/>
             <Card_Master>
-                <AvatarCircle src='/placeholder.png' alt="Cat" />
+                <UserAvatar url={user.picture} />
                 <Card_Context>
                     <Card_Info_Top_Master>
                         <Card_Info_Top_Item>

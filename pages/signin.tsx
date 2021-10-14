@@ -46,9 +46,9 @@ export default function signin() {
             await signIn({
                 variables: { "username": form.username, "password": form.password, "type": "sign_in" }
             });
-            // directs users to the home page, then the home page authenticates user
             window.location.assign('/')
-        } catch(error: any) {
+        } catch(err) {
+            const error = err as ApolloError
             formErrorDsipatch({ type: "INIT_FORM_ERROR", payload: error.message });
             setSpinner(false);
         }
@@ -56,6 +56,15 @@ export default function signin() {
 
     return (
         <>
+            <title>Todo Sign In</title>
+            <link rel="manifest" href="/manifest.webmanifest" />
+            <link rel="apple-touch-icon" href="/icon.png"></link>
+            <link rel="icon" href="/icon.png"></link>
+            <meta name="theme-color" content="#fff" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="description" content="Sign in to get all the features of the todo page!"  />
+            
+
             <FormContainer>
                 <Form onSubmit={submitForm} >
                     <FormHeader> { formErrorState.isError ? formErrorState.errorMessage : "Welcome Back!" } </FormHeader>

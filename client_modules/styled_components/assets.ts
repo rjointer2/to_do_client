@@ -52,7 +52,7 @@ export const StatusDot = styled(GrStatusGoodSmall)``;
 
 
 
-export const AvatarCircle = styled.img`
+export const AvatarCircle = styled.img<any>`
     border-radius: 50%;
     background-color: ${white};
     border: 2px solid ${primary};

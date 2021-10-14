@@ -6,7 +6,6 @@ import { gray } from './palette';
 
 // Palette
 
-
 export const BaseDropDown = styled.aside<Props>`
     padding: 15px;
     position: fixed;

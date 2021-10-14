@@ -1,4 +1,3 @@
-import React from "react"
 
 export type Props = { 
     [index:string]: any
@@ -9,35 +8,54 @@ export type Props = {
     height: string
 }
 
+export interface CreatedBy {
+    id: string
+    username: string
+    picture: string
+}
+
+export interface Comment {
+    id: string
+    createdBy: CreatedBy
+    comment: string
+    createdAt: string
+
+}
+
+export interface LikedBy {
+    id: string
+    username: string
+}
+
+export interface Todo {
+    id: string
+    completed: boolean
+    subject: string
+    todo: string
+    dueDate: string
+    createdBy: CreatedBy
+    likedBy: [LikedBy]
+    comments: [Comment]
+    didUserLike: boolean
+    createdAt: string
+}
+
+export interface Me {
+    me: User
+}
+
 export interface User {
     username: string
     id: string
     email: string
-    todos: {
-        id: string
-        completed: boolean
-        subject: string
-        todo: object
-        dueDate: string
-        createdBy: {
-            id: string
-            username: string
-        }
-        likedBy: {
-            id: string
-            username: string
-        }
-        didUserLike: boolean
-    }
+    todos: [Todo]
+    loading: boolean
+    picture: string
 }
-
-const keys = Object.keys({ "hello": "world" });
 
 type BaseState = {
     [index: string]: any
-    user: {
-        data: null | User
-    }
+    user: User | null
     menu: {
         MENU_NAV: boolean
         MENU_TODO: boolean
@@ -59,8 +77,9 @@ export type ActionTypes = {
     MENU_TODO: boolean,
 
     // USER TYPES
-    USER_LOGGED_IN: null,
-    USER_LOGGED_OUT: any,
+    USER_LOGGED_IN: null | User,
+    USER_LOGGED_OUT: null,
+    USER_AUTHENICATING: null
 }
 
 export type ActionMap = {
@@ -75,8 +94,12 @@ export type ActionMap = {
  */
 
 
-
 // Reducers
 
 export type Reducer<S, A> = (state: S, action: A) => S;
+
+export type combineReducersType<S, A> = (
+    reducers: { [P in keyof S]: Reducer<S, A> }
+) => Reducer<S, A>;
+
 

@@ -15,24 +15,11 @@ export default function ActionButton() {
     const { pathname } = router
 
     const { state, dispatch } = useGlobalState();
-    const { user, menu } = state;
+    const { menu } = state;
 
     const dispatchMenu = () => {
-
-        console.log('state: ', menu)
-
-        if(pathname.includes("todo")) {
-            dispatch({
-                type: "MENU_COMMENT", payload: menu?.MENU_COMMENT
-            })
-        }
-
-        if(pathname === '/' ) {
-            dispatch({
-                type: "MENU_TODO", payload: menu?.MENU_TODO
-            }) 
-        }
-
+        if(pathname.includes("todo")) dispatch({ type: "MENU_COMMENT", payload: menu?.MENU_COMMENT })
+        if(pathname === '/' ) dispatch({ type: "MENU_TODO", payload: menu?.MENU_TODO }) 
     }
 
     return (

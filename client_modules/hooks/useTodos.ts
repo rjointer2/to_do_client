@@ -1,25 +1,24 @@
 import { useQuery } from "@apollo/client"
 import { useEffect, useState } from "react";
 import { GET_TODO_BY_ID, TODOS } from "../apollo_client/querys/todos";
+import { Todo } from "../types";
 
-type useTodosType = { (id?: string): any }
 
-const useTodos: useTodosType = (id) => {
+const useTodos = () => {
 
-    const [ todos, setTodos ] = useState(undefined)
+    const [ todos, setTodos ] = useState<[] | [Todo]>([])
 
-    const { data } = useQuery( id ? GET_TODO_BY_ID : TODOS, {
-        variables: id ?  { "id": id } : { "limit": 10, "offset": 0 }
+    const { data, fetchMore } = useQuery( TODOS, {
+        variables: { "limit": 10, "offset": 0 },
     })
 
     useEffect(() => {
         if(data) for( let prop in data ) setTodos(data[prop])
     }, [data])
 
-    return { todos: todos }
-
-    
+    return { todos, fetchMoreTodos: fetchMore } 
 
 }
 
 export default useTodos
+

@@ -1,5 +1,6 @@
 
 import { gql } from '@apollo/client';
+import { todoFragment } from '../configs/fragemnts';
 
 export const ME = gql`
     {
@@ -13,33 +14,22 @@ export const ME = gql`
                 }
                 didUserLike
             }
+            picture
         }
     }
 `;
 
 export const USER_BY_ID = gql`
+    ${todoFragment}
     query($id: String!) {
         user(id: $id) {
             username
             id
             email
             todos {
-                id 
-                createdBy {
-                    id
-                    username
-                }
-                todo
-                subject
-                completed
-                didUserLike
-                likedBy {
-                    id
-                }
-                comments {
-                    id
-                }
+               ...todos
             }
+            picture
         }
     }
 `;

@@ -1,10 +1,9 @@
 
-import React, { useReducer, useState, } from 'react'
+import React, { useReducer, useRef, useState, } from 'react'
 import { useGlobalState } from '../../../hooks/useGlobalStateHook'
 
 // styles
-import { AvatarCircle } from '../../../styled_components/assets';
-import { primary } from '../../../styled_components/palette';
+import { formErrorReducer, initialFormErrorState } from '../../../hooks/useFormErrorHook';
 
 // components
 import { BaseDropDown } from '../../../styled_components/dropdown'
@@ -15,12 +14,17 @@ import { CloseButton, SubmitBtn } from '../../../styled_components/button';
 import { useMutation } from '@apollo/client';
 import { ADD_TODO } from '../../../apollo_client/mutations/todo';
 
-import { formErrorReducer, initialFormErrorState } from '../../../hooks/useFormErrorHook';
+// styles
 import { Select } from '../../../styled_components/form';
-import getDates from '../../../lib/getDate';
+import getDates from '../../../hooks/useDate';
+import { CenterText } from '../../../styled_components/text';
+import UserAvatar from '../../UserAvatar/UserAvatar';
+
+
 
 
 export default function TodoDropDown() {
+
 
     // global state
     const { state, dispatch } = useGlobalState();
@@ -34,6 +38,8 @@ export default function TodoDropDown() {
     const [form, setForm] = useState({ subject: '', todo: '', dueDate: getDates().getToday()});
     const [spinner, setSpinner] = useState(false);
 
+    const formRef = useRef(form)
+
     const [ formErrorState, formErrorDispatch ] = useReducer(formErrorReducer, initialFormErrorState)
 
     const handleFormEvents = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
@@ -42,8 +48,6 @@ export default function TodoDropDown() {
         console.log(formErrorState.isError)
         if(formErrorState.isError) formErrorDispatch({ type: "EXIT_FORM_ERROR" });
     }
-
-    console.log(form)
     
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -60,6 +64,7 @@ export default function TodoDropDown() {
                 variables: { "subject": form.subject, "todo": form.todo, "dueDate": form.dueDate }
             })
             dispatch({ type: "MENU_TODO", payload: menu?.MENU_TODO })
+            setForm(formRef.current)
         } catch(error) {
             const message = error as string
             formErrorDispatch({ type: "INIT_FORM_ERROR", payload: JSON.stringify(message) })
@@ -70,42 +75,42 @@ export default function TodoDropDown() {
  
     return (
         <BaseDropDown isOpen={menu?.MENU_TODO} >
-            <Forum_Assest_Header>
-                <Forum_Items>
-                    <Forum_Heading>
-                        Post Todo!
-                    </Forum_Heading>
-                    <CloseButton onClick={() => dispatch({ type: "MENU_TODO", payload: menu?.MENU_TODO })} />
-                </Forum_Items>
-            </Forum_Assest_Header>
-            <div>
-            { formErrorState.isError && formErrorState.errorMessage as string }
-            </div>
-            <Card_Master>
-                <AvatarCircle src='/placeholder.png' alt="Cat" />
-                <Card_Context>
-                    <Card_Info_Top_Master>
-                        <Card_Info_Top_Item>
-                            { user?.data && user?.data.username.substring(0, 20) }
-                        </Card_Info_Top_Item>
-                        <Card_Info_Top_Item>
-                            { getDates().getToday() }
-                        </Card_Info_Top_Item>
-                    </Card_Info_Top_Master>
-                    <Card_TextArea placeholder="Subject" height={"20px"} onChange={handleFormEvents} name="subject" />
-                    <Card_TextArea placeholder="Write Something Great Here..." height={"150px"} onChange={handleFormEvents} name="todo" />
-                </Card_Context>
-            </Card_Master>
-            <Forum_Assest_Header>
-                <Forum_Items>
-                    <Select onChange={(e) => setDate(e.target.value) } >
-                        { getDates().getWeek().map((day, index) => <option key={index} value={day} >{day}</option>) }
-                    </Select>
-                    <SubmitBtn onClick={(e) => handleSubmit(e)}>
-                        Submit
-                    </SubmitBtn>
-                </Forum_Items>
-            </Forum_Assest_Header>
+            { user && <>
+                <Forum_Assest_Header>
+                    <Forum_Items>
+                        <Forum_Heading>
+                            Post Todo!
+                        </Forum_Heading>
+                        <CloseButton onClick={() => dispatch({ type: "MENU_TODO", payload: menu?.MENU_TODO })} />
+                    </Forum_Items>
+                </Forum_Assest_Header>
+                { formErrorState.isError && <CenterText>{ formErrorState.errorMessage }!</CenterText> }
+                <Card_Master>
+                    <UserAvatar url={user.picture} />
+                    <Card_Context>
+                        <Card_Info_Top_Master>
+                            <Card_Info_Top_Item>
+                                { user.username }
+                            </Card_Info_Top_Item>
+                            <Card_Info_Top_Item>
+                                { getDates().getToday() }
+                            </Card_Info_Top_Item>
+                        </Card_Info_Top_Master>
+                        <Card_TextArea placeholder="Subject" height={"20px"} onChange={handleFormEvents} name="subject" value={form.subject}/>
+                        <Card_TextArea placeholder="Write Something Great Here..." height={"150px"} onChange={handleFormEvents} name="todo" value={form.todo} />
+                    </Card_Context>
+                </Card_Master>
+                <Forum_Assest_Header>
+                    <Forum_Items>
+                        <Select onChange={(e) => setDate(e.target.value) } >
+                            { getDates().getWeek().map((day, index) => <option key={index} value={day} >{day}</option>) }
+                        </Select>
+                        <SubmitBtn onClick={(e) => handleSubmit(e)}>
+                            Submit
+                        </SubmitBtn>
+                    </Forum_Items>
+                </Forum_Assest_Header>
+            </> }
         </BaseDropDown>
     )
 }

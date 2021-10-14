@@ -20,7 +20,7 @@ export default function Settings() {
 
     // global state
     const { state, dispatch } = useGlobalState()
-    const { menu, user } = state;
+    const { user } = state;
 
 
     return (
@@ -30,16 +30,18 @@ export default function Settings() {
                     <AiOutlineSearch/> Search
                 </SettingsItems>
             </Link>
-            <Link href="/settings ">
+            { user && <>
+                <Link href="settings ">
                 <SettingsItems>
                     <RiUserSettingsLine/> Settings
                 </SettingsItems>
-            </Link>
-            <Link href={`/user/${user?.data?.id}`} >
-                <SettingsItems>
-                    <IoMdPaper/> Todos...
-                </SettingsItems>
-            </Link>
+                </Link>
+                <Link href={`/user/${user.id}`} >
+                    <SettingsItems>
+                        <IoMdPaper/> Todos...
+                    </SettingsItems>
+                </Link>
+            </> }
         </SettingsContainer>
     )
 }

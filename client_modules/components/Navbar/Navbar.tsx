@@ -1,31 +1,34 @@
 
-import React, { useEffect } from 'react'
-
 // next 
 import Link from 'next/link'
 
 // styles
 import { NavContainer, NavWrapper } from './NavbarStyles'
 import { LogoIcon, MenuIcon } from '../../styled_components/assets'
+
+// react
+import { useCallback } from 'react'
 import { useGlobalState } from '../../hooks/useGlobalStateHook'
-import { dispatchUserState } from '../../hooks/useDispatchUserState'
-import { useQuery } from '@apollo/client'
-import { ME } from '../../apollo_client/querys/user'
+import { useAuthenticateUser } from '../../hooks/useAuthUser'
+
+
+// apollo
+
 
 export default function Navbar() {
 
     const { state, dispatch } = useGlobalState();
     const { menu, user } = state;
 
-    const { data, } = useQuery(ME);
-    useEffect(() => dispatchUserState({ data, dispatch }), [data]);
+    const userStateData = useCallback(() => useAuthenticateUser(), [user]);
+    userStateData()
     
     return (
         <NavContainer>
             <NavWrapper>
                 <Link href="/">
                     <div>
-                        <LogoIcon /> { user?.data && "Weclome, Back " + user?.data.username + "!" }
+                        <LogoIcon /> { user && `Welcome Back ${user.username}!` }
                     </div>
                 </Link>
                 <MenuIcon  onClick={() => dispatch({ type: 'MENU_NAV', payload: menu?.MENU_NAV })} />
