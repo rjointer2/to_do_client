@@ -14,6 +14,7 @@ import { CenterText } from '../client_modules/styled_components/text'
 export default function fallback() {
     return (
         <>
+            <head>
             <title>Todo 404</title>
             <link rel="manifest" href="/manifest.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png"></link>
@@ -22,6 +23,7 @@ export default function fallback() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Oh no, not a bad request!"  />
             <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+            </head>
 
             <NavDropDown />
             <TodoDropDown />

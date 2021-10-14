@@ -56,6 +56,7 @@ export default function signin() {
 
     return (
         <>
+            <head>
             <title>Todo Sign In</title>
             <link rel="manifest" href="/manifest.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png"></link>
@@ -63,6 +64,7 @@ export default function signin() {
             <meta name="theme-color" content="#fff" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Sign in to get all the features of the todo page!"  />
+            </head>
             
 
             <FormContainer>

@@ -123,6 +123,7 @@ export default function settings() {
 
     return (
         <>
+            <head>
             <title>Todo Settings</title>
             <link rel="manifest" href="/manifest.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png"></link>
@@ -131,6 +132,7 @@ export default function settings() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Change your user's settings!"  />
             <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+            </head>
 
             <NavDropDown />
             <TodoDropDown />

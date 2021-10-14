@@ -25,6 +25,7 @@ export default function search() {
     
     return (
         <>
+            <head>
             <title>Todo Search</title>
             <link rel="manifest" href="/manifest.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png"></link>
@@ -33,7 +34,8 @@ export default function search() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Find Users and their Todos!"  />
             <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
-
+            </head>
+            
             <NavDropDown />
             <TodoDropDown />
             <Navbar />

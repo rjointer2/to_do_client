@@ -75,15 +75,15 @@ export default function signup() {
     
     return (
         <>
-            <title>Todo Sign Up</title>
+            <head>
+            <title>Todo Sign In</title>
             <link rel="manifest" href="/manifest.webmanifest" />
             <link rel="apple-touch-icon" href="/icon.png"></link>
             <link rel="icon" href="/icon.png"></link>
             <meta name="theme-color" content="#fff" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="Sign up to get all the features of the todo page!"  />
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
-
+            <meta name="description" content="Sign in to get all the features of the todo page!"  />
+            </head>
             <FormContainer>
                 <Form onSubmit={submitForm} >
                     { formErrorState.isError && <CenterText>{ formErrorState.errorMessage }!</CenterText> }

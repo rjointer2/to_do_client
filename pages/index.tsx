@@ -53,6 +53,7 @@ export default function Home() {
 
   return (
     <>
+      <head>
       <title>Todo Home</title>
       <link rel="manifest" href="/manifest.webmanifest" />
       <link rel="apple-touch-icon" href="/icon.png"></link>
@@ -61,6 +62,7 @@ export default function Home() {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content="Explore and See Everyone's Todos!"  />
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+      </head>
 
       <NavDropDown />
       <TodoDropDown />

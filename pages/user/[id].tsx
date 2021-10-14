@@ -33,14 +33,16 @@ export default function userPage() {
 
     return (
         <>
-            <title>User's Page</title>
-            <link rel="manifest" href="/manifest.webmanifest" />
-            <link rel="apple-touch-icon" href="/icon.png"></link>
-            <link rel="icon" href="/icon.png"></link>
-            <meta name="theme-color" content="#fff" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="Sign in to get all the features of the todo page!"  />
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+            <head>
+                <title>User's Page</title>
+                <link rel="manifest" href="/manifest.webmanifest" />
+                <link rel="apple-touch-icon" href="/icon.png"></link>
+                <link rel="icon" href="/icon.png"></link>
+                <meta name="theme-color" content="#fff" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="description" content="Sign in to get all the features of the todo page!"  />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+            </head>
 
             <NavDropDown />
             <TodoDropDown />
