@@ -34,7 +34,7 @@ this software usages
 To run this application use ``` npm run build ``` then ``` npm run production ``` to serve
 the latest build static files
 
-Download the to_do_backend repo and follow instruction
+Download the to_do_backend repo and follow instructions
 
 For Local Development ( after setting up your own db and jwt configs ) you may 
 ``` npm run development ```
