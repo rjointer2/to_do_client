@@ -7,21 +7,16 @@ export default function UserAvatar({ url } : { url: string }) {
 
     const [image, setImage] = useState('/placeholder.png')
     
-    const validiateImage = () => {
-        let req = new XMLHttpRequest();
-        req.open('GET', url, true);
-        req.send();
-        req.onload = () => {
-            let ok = req.status;
-            ok === 200 ? 
+    const showImage = async () => {
+        const res = await fetch(url)
+        if(res.status === 200) {
             setImage(url)
-            :
-            setImage('/placeholder.png')
+            return false
         }
-
+        setImage('/placeholder.png')
     }
 
-    validiateImage()
+    showImage()
 
     return (
         <Link href={`/user/${url.split('/')[5]}`}>

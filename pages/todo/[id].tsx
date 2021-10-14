@@ -50,7 +50,6 @@ export default function todoPage() {
                 <meta name="theme-color" content="#fff" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="description" content="Sign in to get all the features of the todo page!"  />
-                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
             </head>
 
             <NavDropDown />

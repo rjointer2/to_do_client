@@ -22,7 +22,6 @@ export default function fallback() {
             <meta name="theme-color" content="#fff" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Oh no, not a bad request!"  />
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
             </head>
 
             <NavDropDown />

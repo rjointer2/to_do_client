@@ -131,7 +131,6 @@ export default function settings() {
             <meta name="theme-color" content="#fff" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="description" content="Change your user's settings!"  />
-            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
             </head>
 
             <NavDropDown />
