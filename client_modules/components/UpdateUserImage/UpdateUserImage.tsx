@@ -7,6 +7,7 @@ import { useGlobalState } from '../../hooks/useGlobalStateHook';
 import { Card_Info_Top_Item, Card_Master, CenteredDiv } from '../../styled_components/aligment'
 import { AvatarCircle, EditIcon, TrashIcon } from '../../styled_components/assets'
 import { FormLabel } from '../../styled_components/form'
+import UserProfile from '../User/UserProfile';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
 export default function UpdateUserImage() {
@@ -56,10 +57,9 @@ export default function UpdateUserImage() {
             <FormLabel>Picture</FormLabel>
                 <Card_Master>
                     <CenteredDiv>
-                        { user && <UserAvatar url={user.id} /> }
+                        { user && <UserAvatar url={user.picture} /> }
                         <input  type="file" name="image" onChange={handleFileInput} value="" />    
                         { preview && <>
-                            <AvatarCircle src={preview} alt="new image of user, and not a cat..." /> 
                             <FormLabel>
                                 Update Profile Pricture? 
                             </FormLabel>
